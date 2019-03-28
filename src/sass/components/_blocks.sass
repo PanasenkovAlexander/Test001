@@ -1,0 +1,22 @@
+.movingBlocks
+    background-color: white
+    padding: 50px
+
+.blocks_wrapper
+    z-index: 900
+    
+.block-item
+    display: inline-block
+    width: 100px
+    height: 50px
+    background-color: black
+    margin-bottom: 10px
+    opacity: 1
+    transform: translateY(0)
+    transition: all ease 0.5s
+    &.invisible
+        transform: translateY(50%)
+        opacity: 0
+
+.block-btn
+    z-index: 1000

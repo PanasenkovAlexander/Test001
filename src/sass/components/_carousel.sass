@@ -1,0 +1,63 @@
+
+.carousel-wrapper
+    padding: 0 5vw
+    margin: 10vh 0
+
+.owl-item
+    background-color: red
+    overflow: hidden
+    height: $carousel-item-height
+
+.owl-nav
+    position: absolute
+    top: 100%
+    left: 0
+    width: 100%
+    height: $carousel-button-height
+
+.owl-carousel .owl-nav button.owl-prev, .owl-carousel .owl-nav button.owl-next
+    position: absolute
+    background-color: $carousel-button-bg-color
+    width: 35px
+    height: 100%
+    top: calc( (-#{$carousel-item-height} - #{$carousel-button-height} )/2 )
+
+.owl-carousel .owl-nav button.owl-prev
+    left: 0
+    &:after, &:before
+        content: ""
+        display: block
+        width: 15px
+        height: 2px
+        position: absolute
+        top: 50%
+        left: 10px
+        background-color: $close-button-line-color
+        transform-origin: 0 50% 0
+    &:after
+        transform: rotateZ(45deg)
+    &:before
+        transform: rotateZ(-45deg)
+
+.owl-carousel .owl-nav button.owl-next
+    right: 0
+    &:after, &:before
+        content: ""
+        display: block
+        width: 15px
+        height: 2px
+        position: absolute
+        top: 50%
+        left: 10px
+        background-color: $close-button-line-color
+        transform-origin: 100% 50% 0
+    &:after
+        transform: rotateZ(45deg)
+    &:before
+        transform: rotateZ(-45deg)
+
+.owl-carousel .owl-nav button.owl-prev span, .owl-carousel .owl-nav button.owl-next span
+    display: none
+
+
+

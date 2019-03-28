@@ -1,0 +1,91 @@
+
+.form
+    background-color: $form-bg-color
+    padding: 5vw
+
+    &__group
+        width: 100%
+        position: relative
+        &:not(:last-child)
+            margin-bottom: 25px
+
+    &__input
+        font-size: 20px
+        padding: 10px 20px
+        border-radius: 2px
+        background-color: rgba(white, 0.9)
+        border: none
+        border-bottom: 3px solid transparent
+        width: 100%
+        display: block
+        transition: all ease 0.3s
+        outline: none
+        &:focus
+            box-shadow: 0 1rem 2rem rgba(black, .1)
+            border-bottom: 3px solid $form-bottom-line-focus
+        &:focus:invalid
+            border-bottom: 3px solid $form-bottom-line-invalid
+        &::-webkit-input-placeholder
+            color: $form-placeholder-color
+
+    &__label
+        display: block
+        font-size: 20px
+        padding-left: 20px
+        margin-bottom: 5px
+
+    &__danger
+        position: absolute
+        bottom: 0
+        left: 0
+        color: red
+
+    &__submit
+        background-color: $form-submit-button
+        color: white
+
+    &__checkbox-group
+
+    &__checkbox
+        opacity: 0
+        margin-right: -17px
+
+    &__checkbox-label
+        color: $form-confidenial-color
+        position: relative
+        display: block
+        padding-left: 35px
+        a
+            color: white
+
+    &__checkbox-button
+        display: inline-block
+        width: 20px
+        height: 20px
+        border: 2px solid $form-confidenial-color
+        border-radius: 1px
+        position: absolute
+        left: 0
+        top: 0
+        &:after, &:before
+            content: ''
+            display: block
+            width: 3px
+            border-radius: 1px
+            position: absolute
+            background-color: #cd6799
+            opacity: 0
+            transition: opacity .3s
+        &:after
+            height: 15px
+            top: -26%
+            left: 59%
+            transform: rotateZ(18deg)
+        &:before
+            height: 8px
+            top: 17%
+            left: 33%
+            transform: rotateZ(-21deg)
+    &__checkbox:checked ~ &__checkbox-label &__checkbox-button:after, &__checkbox:checked ~ &__checkbox-label &__checkbox-button:before
+        opacity: 1
+
