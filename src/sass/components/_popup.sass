@@ -34,27 +34,24 @@
         top: 0
         right: 0
         cursor: pointer
-        &:hover
-            .popup__close-button--line
-                transform: translateX(-50%) rotateZ(135deg)
-
-        &--line
+        &:before, &:after
+            content: ""
             width: 25px
             height: 2px
             position: absolute
             top: 50%
             left: 50%
             background-color: $close-button-line-color
-            transform: translateX(-50%) rotateZ(45deg)
             transition: all ease 0.3s
-            &:after
-                content: ""
-                display: block
-                width: 25px
-                height: 2px
-                background-color: $close-button-line-color
-                transform: rotateZ(90deg)
-
+        &:before
+            transform: translateX(-50%) rotateZ(45deg)
+        &:after
+            transform: translateX(-50%) rotateZ(-45deg)
+        &:hover:before
+            transform: translateX(-50%) rotateZ(135deg)
+        &:hover:after
+            transform: translateX(-50%) rotateZ(45deg)
+            
     &__content
         padding: 50px 20px 20px 20px
 

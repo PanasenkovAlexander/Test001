@@ -98,50 +98,35 @@ $(document).ready(function(){
     REQUEST_FORM.submit(function(e){
         e.preventDefault();
         var formData = $(this).serialize();
+        var currentForm = $(this);
+        console.log(formData);
         $.ajax({
             type: "POST",
             url: "send.php",
             data: formData,
             success: function(msg){
-                console.log(msg);
                 var result = jQuery.parseJSON(msg);
-                if (result.length === 0) {
+                console.log(result);
+                if (result["errors"] === 0) {
                     openPopup("popupSuccess");
-                    REQUEST_FORM.get(0).reset();
+                    currentForm.trigger("reset");
                     refreshDangerFields();
                 } else {
-                    checkValidationErrors(result);
+                    setErrorWarnings(result);
                 }
             }
         });
     });
     
-    function checkValidationErrors(errorLog){
-        refreshDangerFields();
-        errorLog.forEach(function(error){
-            switch(error) {
-                case "ERR_NAME_INVALID":
-                case "ERR_NAME_UNSET":
-                    $("label[for='request-form__name'] ~ .form__danger").text('Please, enter valid name');
-                    break;
-
-                case "ERR_PHONE_UNSET":
-                case "ERR_PHONE_INVALID":
-                    $("label[for='request-form__phone'] ~ .form__danger").text('Please, enter valid phone number');
-                    break;
-
-                case "ERR_EMAIL_INVALID":
-                case "ERR_EMAIL_UNSET":
-                    $("label[for='request-form__email'] ~ .form__danger").text('Please, enter valid email address');
-                    break;
-
-                case "ERR_WRONG_METHOD":
-            }
-        })
+    function setErrorWarnings(result){
+        for(var k in result["errorlog"]) {
+            var errMessage = result["errorlog"][k];
+            $("input[name='" + k +"'] ~ .form__danger").text(errMessage);
+        }
     }
 
     function refreshDangerFields(){
-        $(".form__danger").text('');
+        $(".form__danger").text("");
     }
 
     $(".block-btn").click(function(){
@@ -160,18 +145,13 @@ $(document).ready(function(){
 
     $(".tab-header").click(function(){
 
-        var titleHeight = $(this).height();
-        var contentHeight = $(this).siblings(".tab-content").outerHeight();
         var container = $(this).parents(".tab-container");
 
         $(".tab-container").removeClass("opened");
-        $(".tab-container").removeAttr("style");
 
         if(container.outerHeight() > 30){
-            container.removeAttr("style");
             container.removeClass("opened");
         } else {
-            container.css("height", contentHeight + titleHeight + "px");
             container.addClass("opened");
         }
 

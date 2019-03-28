@@ -5,12 +5,15 @@
 
 .tabs-wrapper
     background-color: #eee
+    width: 500px
+    margin: 0 auto
 
 .tab-container
     overflow: hidden
-    height: 30px
-    transition: all ease 0.3s
+    max-height: 30px
+    transition: max-height ease 0.5s
     &.opened
+        max-height: 600px
         .tab-header
             color: #a2a2a2
     

@@ -3,6 +3,9 @@
     padding: 0 5vw
     margin: 10vh 0
 
+.owl-carousel.owl-loaded
+    position: relative
+
 .owl-item
     background-color: red
     overflow: hidden
@@ -10,17 +13,16 @@
 
 .owl-nav
     position: absolute
-    top: 100%
+    top: calc(50% - 17px)
     left: 0
     width: 100%
-    height: $carousel-button-height
+    height: 0
 
 .owl-carousel .owl-nav button.owl-prev, .owl-carousel .owl-nav button.owl-next
     position: absolute
     background-color: $carousel-button-bg-color
     width: 35px
-    height: 100%
-    top: calc( (-#{$carousel-item-height} - #{$carousel-button-height} )/2 )
+    height: 35px
 
 .owl-carousel .owl-nav button.owl-prev
     left: 0
