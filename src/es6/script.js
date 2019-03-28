@@ -81,18 +81,18 @@ $(document).ready(function(){
 
     function closePopup(className){
         $("." + className).removeClass("active");
-        console.log("Closed popup with class: '" + className + "'");
+        // console.log("Closed popup with class: '" + className + "'");
     }
 
     function closeAllPopups(){
         $(".popup").removeClass("active");
-        console.log("closed all popups");
+        // console.log("closed all popups");
     }
 
     function openPopup(popupToOpen){
         closeAllPopups();
         $("." + popupToOpen).addClass("active");
-        console.log("Opened popup with class: '" + popupToOpen + "'");
+        // console.log("Opened popup with class: '" + popupToOpen + "'");
     }
 
     REQUEST_FORM.submit(function(e){
@@ -100,14 +100,14 @@ $(document).ready(function(){
         var formData = $(this).serialize();
         var currentForm = $(this);
         var formClass = currentForm.attr("class").split(" ");
-        console.log(formClass);
+        // console.log(formClass);
         for (var i = formClass.length; i >= 0; i--) {
             if (formClass[i] === "form") {
                 formClass.splice(i, 1);
             }
         }
         var classOfForm = formClass.join(".");
-        console.log(formData);
+        // console.log(formData);
 
         $.ajax({
             type: "POST",
@@ -166,8 +166,6 @@ $(document).ready(function(){
         }
 
     });
-
-
 
 });
 
