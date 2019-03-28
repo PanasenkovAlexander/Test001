@@ -99,7 +99,16 @@ $(document).ready(function(){
         e.preventDefault();
         var formData = $(this).serialize();
         var currentForm = $(this);
+        var formClass = currentForm.attr("class").split(" ");
+        console.log(formClass);
+        for (var i = formClass.length; i >= 0; i--) {
+            if (formClass[i] === "form") {
+                formClass.splice(i, 1);
+            }
+        }
+        var classOfForm = formClass.join(".");
         console.log(formData);
+
         $.ajax({
             type: "POST",
             url: "send.php",
@@ -112,16 +121,17 @@ $(document).ready(function(){
                     currentForm.trigger("reset");
                     refreshDangerFields();
                 } else {
-                    setErrorWarnings(result);
+                    setErrorWarnings(result, classOfForm);
                 }
             }
         });
     });
     
-    function setErrorWarnings(result){
+    function setErrorWarnings(result, formClass){
+        
         for(var k in result["errorlog"]) {
             var errMessage = result["errorlog"][k];
-            $("input[name='" + k +"'] ~ .form__danger").text(errMessage);
+            $("."+formClass+ " .form__group input[name='" + k +"'] ~ .form__danger").text(errMessage);
         }
     }
 
